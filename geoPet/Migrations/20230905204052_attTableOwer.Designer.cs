@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using geoPet.Repositories;
 
@@ -11,9 +12,10 @@ using geoPet.Repositories;
 namespace geoPet.Migrations
 {
     [DbContext(typeof(GeoPetContext))]
-    partial class GeoPetContextModelSnapshot : ModelSnapshot
+    [Migration("20230905204052_attTableOwer")]
+    partial class attTableOwer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,7 +38,7 @@ namespace geoPet.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -48,7 +50,10 @@ namespace geoPet.Migrations
 
                     b.HasKey("OwerId");
 
-                    b.ToTable("Owers", (string)null);
+                    b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.ToTable("Owers");
                 });
 
             modelBuilder.Entity("geoPet.Models.Pet", b =>
@@ -80,7 +85,7 @@ namespace geoPet.Migrations
 
                     b.HasIndex("OwerId");
 
-                    b.ToTable("Pets", (string)null);
+                    b.ToTable("Pets");
                 });
 
             modelBuilder.Entity("geoPet.Models.Position", b =>
@@ -109,7 +114,7 @@ namespace geoPet.Migrations
 
                     b.HasIndex("PetId");
 
-                    b.ToTable("Positions", (string)null);
+                    b.ToTable("Positions");
                 });
 
             modelBuilder.Entity("geoPet.Models.Pet", b =>

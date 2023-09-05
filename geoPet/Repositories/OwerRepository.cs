@@ -1,5 +1,6 @@
 ﻿using geoPet.Entities;
 using geoPet.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace geoPet.Repositories
 {
@@ -10,16 +11,25 @@ namespace geoPet.Repositories
         {
             _context = context;
         }
-        public void PostOwer(OwerRequest request)
+        public string PostOwer(OwerRequest request)
         {
-            Ower ower = new Ower();
-            ower.Name = request.Name;
-            ower.Email = request.Email;
-            ower.CEP = request.CEP;
-            ower.Password = request.Password;
+            try
+            {
+                Ower ower = new Ower();
+                ower.Name = request.Name;
+                ower.Email = request.Email;
+                ower.CEP = request.CEP;
+                ower.Password = request.Password;
 
-            _context.Owers.Add(ower);
-            _context.SaveChanges();
+                _context.Owers.Add(ower);
+                _context.SaveChanges();
+                return null;
+
+            }
+            catch (DbUpdateException e) {
+                return "Email already exists";
+            }
+
         }
     }
 }

@@ -1,20 +1,35 @@
 ﻿using geoPet.Entities;
+using geoPet.Exceptions;
 using geoPet.Repositories;
+using geoPet.Utils;
+using System.Globalization;
 
 namespace geoPet.Services
 {
     public class OwerService
     {
-        private OwerRepository _owerRepository;
+        private readonly OwerRepository _owerRepository;
+
         public OwerService(OwerRepository repository)
         {
             this._owerRepository = repository;
         }
 
-        public void PostOwer(OwerRequest request)
+        public string PostOwer(OwerRequest request)
         {
-            _owerRepository.PostOwer(request);
+            var ckeckcep = new CheckCEP();
+            var resultOfCheckCEP =  ckeckcep.CheckAsyncCEP(request.CEP);
+            if (resultOfCheckCEP.Result.Contains("cep"))
+            {
+                var response =_owerRepository.PostOwer(request);
+                return response;
+            }
+            else
+            {
+                return resultOfCheckCEP.Result;
+            }
         }
     }
 }
+
 

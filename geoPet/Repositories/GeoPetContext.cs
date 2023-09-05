@@ -46,6 +46,10 @@ namespace geoPet.Repositories
             .HasMany(c => c.Pets)
             .WithOne(x => x.Ower)
             .HasForeignKey(d => d.OwerId);
+
+             modelBuilder.Entity<Ower>()
+            .HasIndex(e => e.Email)
+            .IsUnique();
         }
 
     } 
