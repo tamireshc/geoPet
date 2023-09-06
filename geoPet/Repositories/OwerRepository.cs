@@ -1,4 +1,5 @@
 ﻿using geoPet.Entities;
+using geoPet.Exceptions;
 using geoPet.Models;
 using geoPet.Utils;
 using Microsoft.EntityFrameworkCore;
@@ -13,34 +14,33 @@ namespace geoPet.Repositories
         {
             _context = context;
         }
-        public string PostOwer(OwerRequest request)
+        public string PostOwer(Ower ower)
         {
-            try
-            {
-                Ower ower = new Ower();
-                ower.Name = request.Name;
-                ower.Email = request.Email;
-                ower.CEP = request.CEP;
-                ower.Password = new Hash(SHA512.Create()).CriptografarSenha(request.Password);
-
-                _context.Owers.Add(ower);
-                _context.SaveChanges();
-                return null;
-
-            }
-            catch (DbUpdateException e) {
-                return "Email already exists";
-            }
+            _context.Owers.Add(ower);
+            _context.SaveChanges();
+            return null;
         }
 
         public List<Ower> findAll()
         {
-           return _context.Owers.ToList();
+            return _context.Owers.ToList();
         }
 
         public Ower findById(int id)
         {
-            return _context.Owers.FirstOrDefault(x=>x.OwerId == id);
+            return _context.Owers.FirstOrDefault(x => x.OwerId == id);
+        }
+
+        public void delete(int id)
+        {
+            _context.Owers.Remove(findById(id));
+            _context.SaveChanges();
+        }
+
+        public void update(Ower ower)
+        {
+            _context.Owers.Update(ower);
+            _context.SaveChanges();
         }
 
 

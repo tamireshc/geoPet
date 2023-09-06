@@ -1,6 +1,6 @@
 ﻿namespace geoPet.Exceptions
 {
-    public class InvalidCEPException : ApplicationException
+    public class InvalidCEPException : Exception
     {
         public InvalidCEPException(string message) : base(message)
         {

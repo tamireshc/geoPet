@@ -1,8 +1,11 @@
 ﻿namespace geoPet.Helpers;
 
 using geoPet.Exceptions;
+using Microsoft.EntityFrameworkCore;
 using System.Net;
 using System.Text.Json;
+
+//https://jasonwatmore.com/post/2022/01/17/net-6-global-error-handler-tutorial-with-example
 
 public class ErrorHandlerMiddleware
 {
@@ -33,6 +36,9 @@ public class ErrorHandlerMiddleware
                 case NotFoundException e:
                     // custom application error
                     response.StatusCode = (int)HttpStatusCode.NotFound;
+                    break;
+                case DuplicatedValueException e:
+                    response.StatusCode = (int)HttpStatusCode.BadRequest;
                     break;
 
                 case KeyNotFoundException e:

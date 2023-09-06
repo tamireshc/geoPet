@@ -1,6 +1,7 @@
 ﻿using geoPet.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 
 namespace geoPet.Repositories
 {
@@ -21,6 +22,8 @@ namespace geoPet.Repositories
                 var connectionString = Environment.GetEnvironmentVariable("DOTNET_CONNECTION_STRING");
 
                 optionsBuilder.UseSqlServer(@"Server=127.0.0.1;Database=geoPet;User=SA;Password=Password12!;");
+                optionsBuilder.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+
             }
         }
 

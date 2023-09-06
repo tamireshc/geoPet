@@ -4,7 +4,7 @@ using geoPet.Models;
 using geoPet.Repositories;
 using geoPet.Utils;
 using Microsoft.EntityFrameworkCore;
-using System.Globalization;
+using System.Security.Cryptography;
 
 namespace geoPet.Services
 {
@@ -19,24 +19,38 @@ namespace geoPet.Services
 
         public string PostOwer(OwerRequest request)
         {
-            var ckeckcep = new CheckCEP();
-            var resultOfCheckCEP =  ckeckcep.CheckAsyncCEP(request.CEP);
-            if (resultOfCheckCEP.Result.Contains("cep"))
+            try
             {
-                var response =_owerRepository.PostOwer(request);
-                return response;
+                var ckeckcep = new CheckCEP();
+                var resultOfCheckCEP = ckeckcep.CheckAsyncCEP(request.CEP);
+                if (resultOfCheckCEP.Result.Contains("cep"))
+                {
+                    Ower ower = new Ower();
+                    ower.Name = request.Name;
+                    ower.Email = request.Email;
+                    ower.CEP = request.CEP;
+                    ower.Password = new Hash(SHA512.Create()).CriptografarSenha(request.Password);
+                    var response = _owerRepository.PostOwer(ower);
+                    return response;
+                }
+                else
+                {
+                    return resultOfCheckCEP.Result;
+                }
+
             }
-            else
+            catch (DbUpdateException e)
             {
-                return resultOfCheckCEP.Result;
+                throw new DuplicatedValueException("Email already exists");
             }
+
         }
 
         public List<OwerResponse> findAll()
         {
             List<OwerResponse> listOwerResponse = new List<OwerResponse>();
             List<Ower> owers = _owerRepository.findAll();
-           
+
             foreach (Ower ower in owers)
             {
                 OwerResponse owerResponse = new OwerResponse();
@@ -55,8 +69,7 @@ namespace geoPet.Services
         public OwerResponse findById(int id)
         {
             Ower ower = _owerRepository.findById(id);
-
-            if( ower == null)
+            if (ower == null)
             {
                 throw new NotFoundException("Ower not found");
             }
@@ -70,7 +83,44 @@ namespace geoPet.Services
 
             return owerResponse;
         }
+
+        public void delete(int id)
+        {
+            this.findById(id);
+            _owerRepository.delete(id);
+        }
+
+        public string update(int id, OwerRequest owerRequest)
+        {
+            try
+            {
+                var ckeckcep = new CheckCEP();
+                var resultOfCheckCEP = ckeckcep.CheckAsyncCEP(owerRequest.CEP);
+                if (resultOfCheckCEP.Result.Contains("cep"))
+                {
+                    Ower ower = new Ower();
+                    ower.OwerId = id;
+                    ower.Name = owerRequest.Name;
+                    ower.Email = owerRequest.Email;
+                    ower.CEP = owerRequest.CEP;
+                    ower.Password = new Hash(SHA512.Create()).CriptografarSenha(owerRequest.Password);
+                    _owerRepository.update(ower);
+                    return null;
+                }
+                else
+                {
+                    return resultOfCheckCEP.Result;
+                }
+            }
+            catch (DbUpdateException e)
+            {
+                throw new DuplicatedValueException("Email already exists");
+            }
+        }
+
+
     }
 }
+
 
 

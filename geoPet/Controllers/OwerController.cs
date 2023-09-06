@@ -16,7 +16,7 @@ namespace geoPet.Controllers
         }
 
         [HttpPost]
-        public IActionResult PostOwer(OwerRequest request)
+        public IActionResult Post(OwerRequest request)
         {
             var result = _owerService.PostOwer(request);
             ErrorResponse errorResponse = new ErrorResponse();
@@ -29,8 +29,7 @@ namespace geoPet.Controllers
         }
 
         [HttpGet]
-        public IActionResult findAll()
-        {
+        public IActionResult findAll() {
             List<OwerResponse> owers = _owerService.findAll();
             return Ok(owers);
         }
@@ -43,5 +42,25 @@ namespace geoPet.Controllers
             return Ok(ower);
         }
 
+        [HttpDelete("{id}")]
+        public IActionResult deleteById(int id)
+        {
+            _owerService.delete(id);
+            return Ok();
+        }
+
+        [HttpPatch("{id}")]
+        public IActionResult Update(int id, OwerRequest request)
+        {
+            _owerService.findById(id);
+            var result = _owerService.update(id, request);
+            ErrorResponse errorResponse = new ErrorResponse();
+            errorResponse.error = result;
+            if (result == null)
+            { 
+                return Ok();
+            }
+            return BadRequest(errorResponse);
+        }
     }
 }
