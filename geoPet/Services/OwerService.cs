@@ -17,7 +17,7 @@ namespace geoPet.Services
             this._owerRepository = repository;
         }
 
-        public string PostOwer(OwerRequest request)
+        public string post(OwerRequest request)
         {
             try
             {
@@ -118,7 +118,23 @@ namespace geoPet.Services
             }
         }
 
+        public string login(LoginRequest loginRequest)
+        {
+            Ower ower = _owerRepository.findByEmail(loginRequest.Email);
 
+            if(ower == null) throw new NotFoundException("Wrong user ou password");
+
+            Hash hash = new Hash(SHA512.Create());
+            bool passwordDecode = hash.VerificarSenha(loginRequest.Password, ower.Password);
+            
+            if (passwordDecode)
+            {
+                TokenGenerator tokenGenerator = new TokenGenerator();
+                return tokenGenerator.Generate(ower);
+            }
+
+            throw new NotFoundException("Wrong user ou password");
+        }
     }
 }
 

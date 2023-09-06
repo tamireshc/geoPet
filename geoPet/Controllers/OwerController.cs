@@ -16,9 +16,9 @@ namespace geoPet.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post(OwerRequest request)
+        public IActionResult post(OwerRequest request)
         {
-            var result = _owerService.PostOwer(request);
+            var result = _owerService.post(request);
             ErrorResponse errorResponse = new ErrorResponse();
             errorResponse.error = result;
             if (result == null)
@@ -61,6 +61,13 @@ namespace geoPet.Controllers
                 return Ok();
             }
             return BadRequest(errorResponse);
+        }
+
+        [HttpPost("/Login")]
+        public IActionResult login(LoginRequest loginRequest)
+        {
+            var result =_owerService.login(loginRequest);
+            return Ok(result);
         }
     }
 }

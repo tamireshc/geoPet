@@ -15,7 +15,7 @@ namespace geoPet.Models
         [ForeignKey("OwerId")]
         public int OwerId { get; set; }
         public Ower Ower { get; set; }
-        public ICollection<Position> Positions { get; set; }
+        public ICollection<Position>? Positions { get; set; }
 
     }
 }

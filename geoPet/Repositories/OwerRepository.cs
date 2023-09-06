@@ -37,6 +37,11 @@ namespace geoPet.Repositories
             _context.SaveChanges();
         }
 
+        public Ower findByEmail(String email)
+        {
+            return _context.Owers.FirstOrDefault(x => x.Email == email);
+        }
+
         public void update(Ower ower)
         {
             _context.Owers.Update(ower);
