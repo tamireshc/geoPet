@@ -36,7 +36,7 @@ namespace geoPet.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -48,7 +48,10 @@ namespace geoPet.Migrations
 
                     b.HasKey("OwerId");
 
-                    b.ToTable("Owers", (string)null);
+                    b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.ToTable("Owers");
                 });
 
             modelBuilder.Entity("geoPet.Models.Pet", b =>
@@ -80,7 +83,7 @@ namespace geoPet.Migrations
 
                     b.HasIndex("OwerId");
 
-                    b.ToTable("Pets", (string)null);
+                    b.ToTable("Pets");
                 });
 
             modelBuilder.Entity("geoPet.Models.Position", b =>
@@ -109,7 +112,7 @@ namespace geoPet.Migrations
 
                     b.HasIndex("PetId");
 
-                    b.ToTable("Positions", (string)null);
+                    b.ToTable("Positions");
                 });
 
             modelBuilder.Entity("geoPet.Models.Pet", b =>

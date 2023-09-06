@@ -12,8 +12,8 @@ using geoPet.Repositories;
 namespace geoPet.Migrations
 {
     [DbContext(typeof(GeoPetContext))]
-    [Migration("20230905130435_CreateTables")]
-    partial class CreateTables
+    [Migration("20230906205929_createTables")]
+    partial class createTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -38,7 +38,7 @@ namespace geoPet.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -49,6 +49,9 @@ namespace geoPet.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("OwerId");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
 
                     b.ToTable("Owers");
                 });

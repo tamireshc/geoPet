@@ -37,6 +37,10 @@ public class ErrorHandlerMiddleware
                     // custom application error
                     response.StatusCode = (int)HttpStatusCode.NotFound;
                     break;
+                case InvalidValueException e:
+                    // custom application error
+                    response.StatusCode = (int)HttpStatusCode.BadRequest;
+                    break;             
                 case DuplicatedValueException e:
                     response.StatusCode = (int)HttpStatusCode.BadRequest;
                     break;

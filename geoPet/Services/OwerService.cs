@@ -58,7 +58,6 @@ namespace geoPet.Services
                 owerResponse.Name = ower.Name;
                 owerResponse.CEP = ower.CEP;
                 owerResponse.Email = ower.Email;
-                owerResponse.Pets = ower.Pets;
 
                 listOwerResponse.Add(owerResponse);
             }

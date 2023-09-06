@@ -10,6 +10,6 @@ namespace geoPet.Models
         public string Longitude { get; set; }
         public DateTime DateTime { get; set; }
         public int PetId { get; set; }
-        public Pet Pet { get; set; }
+        public Pet? Pet { get; set; }
     }
 }

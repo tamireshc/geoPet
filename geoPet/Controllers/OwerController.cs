@@ -49,7 +49,7 @@ namespace geoPet.Controllers
             return Ok();
         }
 
-        [HttpPatch("{id}")]
+        [HttpPut("{id}")]
         public IActionResult Update(int id, OwerRequest request)
         {
             _owerService.findById(id);

@@ -28,7 +28,9 @@ namespace geoPet.Repositories
 
         public Ower findById(int id)
         {
-            return _context.Owers.FirstOrDefault(x => x.OwerId == id);
+            return _context.Owers
+                .Include(p=>p.Pets)
+                .FirstOrDefault(x => x.OwerId == id);
         }
 
         public void delete(int id)
