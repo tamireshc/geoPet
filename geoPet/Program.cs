@@ -1,3 +1,4 @@
+using geoPet.Helpers;
 using geoPet.Repositories;
 using geoPet.Services;
 
@@ -24,10 +25,15 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+// global error handler
+app.UseMiddleware<ErrorHandlerMiddleware>();
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
 app.MapControllers();
+
+
 
 app.Run();
