@@ -35,7 +35,7 @@ namespace geoPet.Utils
                 else
                 {
                     // Lidar com erros de acordo com o código de status da resposta
-                    return "Invalid CEP";
+                    return "Invalid CEPP";
                 }
             }
             catch (HttpRequestException e)
