@@ -27,15 +27,14 @@ namespace geoPet.Utils
                     string conteudo = await response.Content.ReadAsStringAsync();
                     if (conteudo.Contains("true"))
                     {
-                        return "Nonexistent CEP";
+                        throw new InvalidCEPException("Nonexistent CEP");
                     }
 
                        return conteudo;            
                 }
                 else
                 {
-                    // Lidar com erros de acordo com o código de status da resposta
-                    return "Invalid CEPP";
+                    throw new InvalidCEPException("Invalid CEP");
                 }
             }
             catch (HttpRequestException e)
