@@ -1,4 +1,7 @@
-﻿namespace geoPet.Utils
+﻿using geoPet.Exceptions;
+using System.Net.Http.Headers;
+
+namespace geoPet.Utils
 {
     public class SearchAddress
     {
@@ -6,7 +9,7 @@
         public SearchAddress()
         {
             _httpClient = new HttpClient();
-            _httpClient.BaseAddress = new Uri("https://nominatim.openstreetmap.org/reverse?format=json&");
+            _httpClient.BaseAddress = new Uri("https://nominatim.openstreetmap.org/");
             _httpClient.Timeout = TimeSpan.FromSeconds(30);
         }
 
@@ -14,26 +17,24 @@
         {
             try
             {
-                HttpResponseMessage response = await _httpClient.GetAsync($"lat ={latitude}&lon ={longitude}");
-
+                _httpClient.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("MyApp", "1.0"));
+                HttpResponseMessage response = await _httpClient.GetAsync($"reverse?format=json&lat={latitude}&lon={longitude}");
                 if (response.IsSuccessStatusCode)
                 {
                     string conteudo = await response.Content.ReadAsStringAsync();
                     if (conteudo.Contains("error"))
                     {
-                        return null;
+                        throw new InvalidValueException("Incorrect values on address request x");
                     }
-
                     return conteudo;
                 }
-                else
-                {
-                    return null;
-                }
+
+                throw new InvalidValueException("Incorrect values on address request");
+
             }
             catch (HttpRequestException e)
             {
-                return null;
+                return e.Message;
             }
         }
     }

@@ -15,6 +15,7 @@ builder.Services.AddScoped<OwerRepository>();
 builder.Services.AddScoped<OwerService>();
 builder.Services.AddScoped<PetRepository>();
 builder.Services.AddScoped<PetService>();
+builder.Services.AddScoped<SearcheAddressService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

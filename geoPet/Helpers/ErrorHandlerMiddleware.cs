@@ -44,14 +44,13 @@ public class ErrorHandlerMiddleware
                 case DuplicatedValueException e:
                     response.StatusCode = (int)HttpStatusCode.BadRequest;
                     break;
-
                 case KeyNotFoundException e:
                     // not found error
                     response.StatusCode = (int)HttpStatusCode.NotFound;
                     break;
                 default:
                     // unhandled error
-                    response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                    response.StatusCode = (int)HttpStatusCode.BadRequest;
                     break;
             }
 
