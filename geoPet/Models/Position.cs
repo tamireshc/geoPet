@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace geoPet.Models
 {
@@ -10,6 +11,7 @@ namespace geoPet.Models
         public string Longitude { get; set; }
         public DateTime DateTime { get; set; }
         public int PetId { get; set; }
+        [JsonIgnore]
         public Pet? Pet { get; set; }
     }
 }

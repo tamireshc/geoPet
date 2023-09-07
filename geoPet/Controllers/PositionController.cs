@@ -1,4 +1,5 @@
 ﻿using geoPet.Entities;
+using geoPet.Models;
 using geoPet.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,13 +10,43 @@ namespace geoPet.Controllers
     public class PositionController : ControllerBase
     {
         private PositionService _positionService;
-        public PositionController(PositionService service) { 
+        public PositionController(PositionService service)
+        {
             this._positionService = service;
         }
+
         [HttpPost]
-        public IActionResult PostPosition(PositionRequest positionRequest) 
+        public IActionResult post(PositionRequest positionRequest)
         {
-            _positionService.PostPosition(positionRequest);
+            _positionService.post(positionRequest);
+            return Ok();
+        }
+
+        [HttpGet]
+        public IActionResult findAll()
+        {
+            List<Position> positions = _positionService.findAll();
+            return Ok(positions);
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult findById(int id)
+        {
+            Position position = _positionService.findById(id);
+            return Ok(position);
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult delete(int id)
+        {
+            _positionService.delete(id);
+            return Ok();
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult update(int id, PositionRequest request)
+        {
+            _positionService.update(id, request);
             return Ok();
         }
     }

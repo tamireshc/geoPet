@@ -21,7 +21,9 @@ namespace geoPet.Repositories
 
         public Pet findById(int id)
         {
-            return _context.Pets.FirstOrDefault(p => p.PetId == id);
+            return _context.Pets
+                .Include(x => x.Positions)
+                .FirstOrDefault(p => p.PetId == id);
         }
 
         public List<Pet> findAll()
