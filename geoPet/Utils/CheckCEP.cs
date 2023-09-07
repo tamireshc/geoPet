@@ -1,5 +1,4 @@
 ﻿using geoPet.Exceptions;
-using System.Net.Http;
 
 namespace geoPet.Utils
 {
@@ -17,20 +16,18 @@ namespace geoPet.Utils
         {
             try
             {
-                // Faça uma solicitação GET para a API
-                HttpResponseMessage response = await _httpClient.GetAsync(cep + "/json"); // Substitua pelo endpoint correto
 
-                // Verifique se a solicitação foi bem-sucedida (código de status 200)
+                HttpResponseMessage response = await _httpClient.GetAsync(cep + "/json");
                 if (response.IsSuccessStatusCode)
                 {
-                    // Leia o conteúdo da resposta como uma string
+
                     string conteudo = await response.Content.ReadAsStringAsync();
                     if (conteudo.Contains("true"))
                     {
                         throw new InvalidCEPException("Nonexistent CEP");
                     }
 
-                       return conteudo;            
+                    return conteudo;
                 }
                 else
                 {
@@ -39,7 +36,6 @@ namespace geoPet.Utils
             }
             catch (HttpRequestException e)
             {
-                // Lidar com erros de rede ou falhas na chamada da API
                 return $"Erro de HTTP: {e.Message}";
             }
         }

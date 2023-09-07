@@ -43,7 +43,6 @@ namespace geoPet.Services
             {
                 throw new DuplicatedValueException("Email already exists");
             }
-
         }
 
         public List<OwerResponse> findAll()

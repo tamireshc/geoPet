@@ -20,7 +20,14 @@ namespace geoPet.Services
         public void post(PositionRequest request)
         {
             _petService.findById(request.PetId);
-            _positionRepository.PostPosition(request);
+
+            var position = new Position();
+            position.Latitude = request.Latitude;
+            position.Longitude = request.Longitude;
+            position.DateTime = DateTime.Now;
+            position.PetId = request.PetId;
+     
+            _positionRepository.post(position);
         }
 
         public List<Position> findAll()
@@ -49,10 +56,18 @@ namespace geoPet.Services
             position.PositionId = id;
             position.Latitude = request.Latitude;
             position.Longitude = request.Longitude;
-            position.DateTime = request.DateTime;
+            position.DateTime = (DateTime)request.DateTime;
             position.PetId = request.PetId;
 
             _positionRepository.update(position);
+        }
+
+        public Position lastPositionOfPet(int id)
+        {
+            _petService.findById(id);
+            var position = _positionRepository.lastPositionOfPet(id);
+            if (position == null) throw new NotFoundException("There isn´t position for this pet");
+            return position;
         }
     }
 }

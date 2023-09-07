@@ -11,13 +11,8 @@ namespace geoPet.Repositories
             _context = context;
         }
 
-        public void PostPosition(PositionRequest request)
+        public void post(Position position)
         {
-            var position = new Position();
-            position.Latitude = request.Latitude;
-            position.Longitude = request.Longitude;
-            position.DateTime = request.DateTime;
-            position.PetId = request.PetId;
             _context.Positions.Add(position);
             _context.SaveChanges();
         }
@@ -42,6 +37,12 @@ namespace geoPet.Repositories
         {
             _context.Positions.Update(position);
             _context.SaveChanges();
+        }
+
+        public Position lastPositionOfPet(int id)
+        {
+            var positions = _context.Positions.Where(p => p.PetId == id).ToList();
+            return positions.LastOrDefault();
         }
     }
 }

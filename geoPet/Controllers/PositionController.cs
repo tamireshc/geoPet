@@ -49,6 +49,12 @@ namespace geoPet.Controllers
             _positionService.update(id, request);
             return Ok();
         }
+
+        [HttpGet("Pet/{id}")]
+        public IActionResult lastPositionOfPet(int id) {
+            Position position = _positionService.lastPositionOfPet(id);
+            return Ok(position);
+        }
     }
 }
 

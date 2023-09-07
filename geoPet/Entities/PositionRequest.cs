@@ -4,7 +4,7 @@
     {
         public string Latitude { get; set; }
         public string Longitude { get; set; }
-        public DateTime DateTime { get; set; }
+        public DateTime? DateTime { get; set; }
         public int PetId { get; set; }
 
     }
