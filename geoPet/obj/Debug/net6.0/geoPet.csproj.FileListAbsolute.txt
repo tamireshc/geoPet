@@ -64,3 +64,4 @@ C:\Users\tamir\Projetos\geoPet\geoPet\obj\Debug\net6.0\refint\geoPet.dll
 C:\Users\tamir\Projetos\geoPet\geoPet\obj\Debug\net6.0\geoPet.pdb
 C:\Users\tamir\Projetos\geoPet\geoPet\obj\Debug\net6.0\geoPet.genruntimeconfig.cache
 C:\Users\tamir\Projetos\geoPet\geoPet\obj\Debug\net6.0\ref\geoPet.dll
+C:\Users\tamir\Projetos\geoPet\geoPet\bin\Debug\net6.0\QRCoder.dll

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Qoabkeu6wt3n3I+r0rFGk/0uCRqMp+Mm+KXVgrktxfPwMlF/aiUwdLtT0uVLa9H8aPrcbZj0YYdaPlDAQYLI1w==",
+  "dgSpecHash": "BzFVu5g6htPOrC33ygCb2pG5GO6n0O84yXrtEUZCQiD6zH2zYWthUkK/zAqoRTJmYjegbQGr7ZNeVEJ+V7H1Tw==",
   "success": true,
   "projectFilePath": "C:\\Users\\tamir\\Projetos\\geoPet\\geoPet\\geoPet.csproj",
   "expectedPackageFiles": [
@@ -34,6 +34,7 @@
     "C:\\Users\\tamir\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
     "C:\\Users\\tamir\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\tamir\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
+    "C:\\Users\\tamir\\.nuget\\packages\\qrcoder\\1.4.3\\qrcoder.1.4.3.nupkg.sha512",
     "C:\\Users\\tamir\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
     "C:\\Users\\tamir\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
     "C:\\Users\\tamir\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
