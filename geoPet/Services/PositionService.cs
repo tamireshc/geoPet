@@ -28,6 +28,12 @@ namespace geoPet.Services
             position.PetId = request.PetId;
      
             _positionRepository.post(position);
+
+            if(_positionRepository.countNumberPositionsOdPet(request.PetId) > 5)
+            {
+                var firstPosition = _positionRepository.firstPositionOfPet(request.PetId);
+                _positionRepository.delete(firstPosition);
+            }
         }
 
         public List<Position> findAll()

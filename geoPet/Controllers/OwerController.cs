@@ -1,5 +1,4 @@
 ﻿using geoPet.Entities;
-using geoPet.Models;
 using geoPet.Services;
 using Microsoft.AspNetCore.Mvc;
 

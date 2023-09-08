@@ -41,8 +41,20 @@ namespace geoPet.Repositories
 
         public Position lastPositionOfPet(int id)
         {
-            var positions = _context.Positions.Where(p => p.PetId == id).ToList();
-            return positions.LastOrDefault();
+            var position = _context.Positions.Where(p => p.PetId == id).ToList();
+            return position.LastOrDefault();
+        }
+
+        public Position firstPositionOfPet(int id)
+        {
+            var position = _context.Positions.Where(p => p.PetId == id).ToList();
+            return position.FirstOrDefault();
+        }
+
+        public int countNumberPositionsOdPet(int id)
+        {
+            var position = _context.Positions.Where(p => p.PetId == id).ToList();
+            return position.Count;
         }
     }
 }
