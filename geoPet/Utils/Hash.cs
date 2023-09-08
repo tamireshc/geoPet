@@ -4,7 +4,6 @@ using System.Text;
 namespace geoPet.Utils
 {
     // https://www.devmedia.com.br/criptografia-hash-em-net/32112
-
     public class Hash
     {
         private HashAlgorithm _algoritmo;

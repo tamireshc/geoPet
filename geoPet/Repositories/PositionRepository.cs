@@ -1,5 +1,4 @@
-﻿using geoPet.Entities;
-using geoPet.Models;
+﻿using geoPet.Models;
 
 namespace geoPet.Repositories
 {

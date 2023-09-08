@@ -28,7 +28,8 @@ namespace geoPet.Controllers
         }
 
         [HttpGet]
-        public IActionResult findAll() {
+        public IActionResult findAll()
+        {
             List<OwerResponse> owers = _owerService.findAll();
             return Ok(owers);
         }
@@ -56,7 +57,7 @@ namespace geoPet.Controllers
             ErrorResponse errorResponse = new ErrorResponse();
             errorResponse.error = result;
             if (result == null)
-            { 
+            {
                 return Ok();
             }
             return BadRequest(errorResponse);
@@ -65,7 +66,7 @@ namespace geoPet.Controllers
         [HttpPost("/Login")]
         public IActionResult login(LoginRequest loginRequest)
         {
-            var result =_owerService.login(loginRequest);
+            var result = _owerService.login(loginRequest);
             return Ok(result);
         }
     }

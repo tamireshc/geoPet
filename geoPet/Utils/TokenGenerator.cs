@@ -22,6 +22,7 @@ namespace geoPet.Utils
             var token = tokenHandler.CreateToken(tokenDescriptor);
             return tokenHandler.WriteToken(token);
         }
+
         private ClaimsIdentity AddClaims(Ower owerRequest)
         {
             var claims = new ClaimsIdentity();

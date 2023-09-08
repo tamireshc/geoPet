@@ -3,7 +3,6 @@ using geoPet.Exceptions;
 using geoPet.Models;
 using geoPet.Utils;
 using Microsoft.EntityFrameworkCore;
-using System.Security.Cryptography;
 
 namespace geoPet.Repositories
 {
@@ -29,7 +28,7 @@ namespace geoPet.Repositories
         public Ower findById(int id)
         {
             return _context.Owers
-                .Include(p=>p.Pets)
+                .Include(p => p.Pets)
                 .FirstOrDefault(x => x.OwerId == id);
         }
 
@@ -49,7 +48,5 @@ namespace geoPet.Repositories
             _context.Owers.Update(ower);
             _context.SaveChanges();
         }
-
-
     }
 }

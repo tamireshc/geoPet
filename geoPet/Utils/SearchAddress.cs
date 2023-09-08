@@ -28,9 +28,7 @@ namespace geoPet.Utils
                     }
                     return conteudo;
                 }
-
                 throw new InvalidValueException("Incorrect values on address request");
-
             }
             catch (HttpRequestException e)
             {

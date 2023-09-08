@@ -67,10 +67,7 @@ namespace geoPet.Services
         public OwerResponse findById(int id)
         {
             Ower ower = _owerRepository.findById(id);
-            if (ower == null)
-            {
-                throw new NotFoundException("Ower not found");
-            }
+            if (ower == null) throw new NotFoundException("Ower not found");
 
             OwerResponse owerResponse = new OwerResponse();
             owerResponse.OwerId = ower.OwerId;
@@ -120,11 +117,11 @@ namespace geoPet.Services
         {
             Ower ower = _owerRepository.findByEmail(loginRequest.Email);
 
-            if(ower == null) throw new NotFoundException("Wrong user ou password");
+            if (ower == null) throw new NotFoundException("Wrong user ou password");
 
             Hash hash = new Hash(SHA512.Create());
             bool passwordDecode = hash.VerificarSenha(loginRequest.Password, ower.Password);
-            
+
             if (passwordDecode)
             {
                 TokenGenerator tokenGenerator = new TokenGenerator();

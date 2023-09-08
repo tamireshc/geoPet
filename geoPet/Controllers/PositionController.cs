@@ -51,7 +51,8 @@ namespace geoPet.Controllers
         }
 
         [HttpGet("Pet/{id}")]
-        public IActionResult lastPositionOfPet(int id) {
+        public IActionResult lastPositionOfPet(int id)
+        {
             Position position = _positionService.lastPositionOfPet(id);
             return Ok(position);
         }

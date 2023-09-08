@@ -1,7 +1,6 @@
 ﻿namespace geoPet.Helpers;
 
 using geoPet.Exceptions;
-using Microsoft.EntityFrameworkCore;
 using System.Net;
 using System.Text.Json;
 
@@ -40,7 +39,7 @@ public class ErrorHandlerMiddleware
                 case InvalidValueException e:
                     // custom application error
                     response.StatusCode = (int)HttpStatusCode.BadRequest;
-                    break;             
+                    break;
                 case DuplicatedValueException e:
                     response.StatusCode = (int)HttpStatusCode.BadRequest;
                     break;

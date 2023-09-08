@@ -1,7 +1,5 @@
 ﻿using geoPet.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Options;
 
 namespace geoPet.Repositories
 {
@@ -23,7 +21,6 @@ namespace geoPet.Repositories
 
                 optionsBuilder.UseSqlServer(@"Server=127.0.0.1;Database=geoPet;User=SA;Password=Password12!;");
                 optionsBuilder.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
-
             }
         }
 
@@ -50,10 +47,10 @@ namespace geoPet.Repositories
             .WithOne(x => x.Ower)
             .HasForeignKey(d => d.OwerId);
 
-             modelBuilder.Entity<Ower>()
-            .HasIndex(e => e.Email)
-            .IsUnique();
+            modelBuilder.Entity<Ower>()
+           .HasIndex(e => e.Email)
+           .IsUnique();
         }
 
-    } 
+    }
 }

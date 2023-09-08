@@ -21,6 +21,5 @@ namespace geoPet.Controllers
             string adresss = _searchAdressService.searchAdress(request.Latitude, request.Longitude);
             return Ok(adresss);
         }
-
     }
 }
