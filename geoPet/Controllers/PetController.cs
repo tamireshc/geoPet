@@ -33,7 +33,7 @@ namespace geoPet.Controllers
         [HttpGet]
         public IActionResult findAll()
         {
-            List<Pet> pets = _petService.findAll();
+            List<PetResponse> pets = _petService.findAll();
             return Ok(pets);
         }
 

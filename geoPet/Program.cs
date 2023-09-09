@@ -31,6 +31,9 @@ if (app.Environment.IsDevelopment())
 // global error handler
 app.UseMiddleware<ErrorHandlerMiddleware>();
 
+app.UseCors(c => c.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

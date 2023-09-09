@@ -3,6 +3,7 @@ using geoPet.Entities.Enuns;
 using geoPet.Exceptions;
 using geoPet.Models;
 using geoPet.Repositories;
+using System.Collections.Generic;
 
 namespace geoPet.Services
 {
@@ -56,9 +57,23 @@ namespace geoPet.Services
             return pet;
         }
 
-        public List<Pet> findAll()
+        public List<PetResponse> findAll()
         {
-            return _petRepository.findAll();
+            List<Pet> pets = _petRepository.findAll();
+            List<PetResponse> response = new List<PetResponse>();
+
+            foreach (Pet pet in pets)
+            {
+                PetResponse petResponse = new PetResponse();
+                petResponse.Name = pet.Name;
+                petResponse.Age = pet.Age;
+                petResponse.Size = pet.Size;
+                petResponse.Breed = pet.Breed;
+                petResponse.OwerId = pet.OwerId;
+
+                response.Add(petResponse);
+            }
+            return response;
         }
 
         public void delete(int id)

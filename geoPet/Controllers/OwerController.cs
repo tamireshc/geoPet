@@ -30,7 +30,7 @@ namespace geoPet.Controllers
         [HttpGet]
         public IActionResult findAll()
         {
-            List<OwerResponse> owers = _owerService.findAll();
+            List<OwerResponseWithoutPets> owers = _owerService.findAll();
             return Ok(owers);
         }
 

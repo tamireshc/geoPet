@@ -45,14 +45,14 @@ namespace geoPet.Services
             }
         }
 
-        public List<OwerResponse> findAll()
+        public List<OwerResponseWithoutPets> findAll()
         {
-            List<OwerResponse> listOwerResponse = new List<OwerResponse>();
+            List<OwerResponseWithoutPets> listOwerResponse = new List<OwerResponseWithoutPets>();
             List<Ower> owers = _owerRepository.findAll();
 
             foreach (Ower ower in owers)
             {
-                OwerResponse owerResponse = new OwerResponse();
+                OwerResponseWithoutPets owerResponse = new OwerResponseWithoutPets();
                 owerResponse.OwerId = ower.OwerId;
                 owerResponse.Name = ower.Name;
                 owerResponse.CEP = ower.CEP;
