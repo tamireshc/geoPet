@@ -1,6 +1,6 @@
-# GeoPet - Projeto Final Aceleração em C# .NET
+# GeoPet 
 
-O geoPet é uma API para geolocalização de pets.<br>
+O GeoPet é uma API para geolocalização de pets.<br>
 O objetivo deste projeto é proporcionar uma forma para que os tutores de pets possam armazenar as informções dos seus animalzinhos e 
 buscar pelas suas últimas localizações.<br>
 O Api também disponibiliza rotas que geram um QR Code com as informações da pessoa cuidadora e dos pets, caso o animal esteja perdido.<br>
@@ -17,7 +17,7 @@ Clone o repositório:
 
 ```
 git clone git@github.com:tamireshc/geoPet.git
-cd src/triytter
+cd src/geoPet
 dotnet restore
 dotnet run
 ```
@@ -54,7 +54,7 @@ As linhas não cobertas tratam de linhas de configurações.
 
 
 ## 🔎 Documentação da API
-
+*em construção
 
 
 
