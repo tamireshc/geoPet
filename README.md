@@ -56,6 +56,8 @@ As linhas não cobertas tratam de linhas de configurações.
 ## 🔎 Documentação da API
 *em construção
 
-
+## :smiley: Extra 
+*em construção
+![Captura de tela 2023-09-08 195040](https://github.com/tamireshc/geoPet/assets/65035109/d3d82bd9-7d28-4b86-a36e-aa8cd01c1454)
 
 
