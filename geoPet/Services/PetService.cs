@@ -65,6 +65,7 @@ namespace geoPet.Services
             foreach (Pet pet in pets)
             {
                 PetResponse petResponse = new PetResponse();
+                petResponse.PetId = pet.PetId;
                 petResponse.Name = pet.Name;
                 petResponse.Age = pet.Age;
                 petResponse.Size = pet.Size;
