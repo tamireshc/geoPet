@@ -491,6 +491,7 @@ OU
 	"message": "Wrong user ou password"
 }
 ```
+:warning: STATUS 404 - Not Found
 
 - Ao buscar pela última posição de um pet que não possui posições cadastradas deve emitir a exceção `NotFoundException`
  ```json
@@ -498,6 +499,7 @@ OU
 	"message": "There isn´t position for this pet"
 }
 ```
+:warning: STATUS 404 - Not Found
 </details>
 
 ## :smiley: Extra 
