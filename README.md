@@ -3,7 +3,7 @@
 O GeoPet é uma API para geolocalização de pets.<br>
 O objetivo deste projeto é proporcionar uma forma para que os tutores de pets possam armazenar as informções dos seus animalzinhos e 
 buscar pelas suas últimas localizações.<br>
-O Api também disponibiliza rotas que geram um QR Code com as informações da pessoa cuidadora e dos pets, caso o animal esteja perdido.<br>
+O API também disponibiliza rotas que geram um QR Code com as informações da pessoa cuidadora e dos pets, caso o animal esteja perdido.<br>
 
 ## :mag: Tecnologias utilizadas
 - Construção da API - [ASP.NET ](https://dotnet.microsoft.com/pt-br/apps/aspnet)<br>
@@ -181,7 +181,7 @@ As linhas não cobertas tratam de linhas de configurações.
 <details>
 <summary><strong>:dog: :cat: Pet </strong></summary><br/>
 
-- Cadastro de Pet
+- Cadastro de pet
 
 ```
   POST /Pet
@@ -189,8 +189,8 @@ As linhas não cobertas tratam de linhas de configurações.
 
 | Parâmetro   | Tipo       | Descrição                           |
 | :---------- | :--------- | :---------------------------------- |
-| `name` | `string` |   nome do Pet. |
-| `age` | `integer` |   idade do tutor. |
+| `name` | `string` |   nome do pet. |
+| `age` | `integer` |   idade do pet. |
 | `size` | `Size` |   porte do pet. |
 | `breed` | `string` |  raça do pet. |
 | `owerId` | `int` |  id do tudor do pet. |
@@ -201,10 +201,10 @@ As linhas não cobertas tratam de linhas de configurações.
 
 :white_check_mark: STATUS 200 OK
 
- - Atualizar Pet
+ - Atualizar pet
 
  ```
-  PUT /PET/:id
+  PUT /Pet/:id
 ```
 | Parâmetro   | Tipo       | Descrição                           |
 | :---------- | :--------- | :---------------------------------- |
@@ -221,10 +221,10 @@ As linhas não cobertas tratam de linhas de configurações.
 
 :white_check_mark: STATUS 200 OK
 
-- Obter um Pet por seu id
+- Obter um pet por seu id
 
 ```
-  GET /Ower/:id
+  GET /Pet/:id
 ```
   Corpo da resposta: <br/>
   
@@ -280,7 +280,7 @@ As linhas não cobertas tratam de linhas de configurações.
   ```
 :white_check_mark: STATUS 200 OK
 
-- Deletar um Pet por seu id
+- Deletar um pet com seu id
 
 ```
   DELETE /Pet/:id
@@ -294,7 +294,7 @@ As linhas não cobertas tratam de linhas de configurações.
 <details>
 <summary><strong>:round_pushpin: Position </strong></summary><br/>
 
-- Cadastro de uma posição de um Pet
+- Cadastro de uma posição de um pet
 
 ```
   POST /Position
@@ -306,13 +306,13 @@ As linhas não cobertas tratam de linhas de configurações.
 | `longitude` | `string` |   latitude da posição do Pet. |
 | `petId` | `int` |  id do pet. |
 
-
+** O campo dateTime é preenchido com a data e hora da inserção.<br>
 ** Antes da inserção  é validado se o pet existe na base de dados.<br>
 *Para mais detalhes ver o tópico dos casos de falha<br>
 
 :white_check_mark: STATUS 200 OK
 
- - Atualizar a Posição de um Pet
+ - Atualizar a posição de um pet
 
  ```
   PUT /Position/:id
@@ -329,10 +329,10 @@ As linhas não cobertas tratam de linhas de configurações.
 
 :white_check_mark: STATUS 200 OK
 
-- Obter a última posição de Pet por seu id
+- Obter a última posição de um pet pelo id do pet id
 
 ```
-  GET //Position/Pet/:id
+  GET /Position/Pet/:id
 ```
   Corpo da resposta: <br/>
   
@@ -396,7 +396,7 @@ As linhas não cobertas tratam de linhas de configurações.
   ```
 :white_check_mark: STATUS 200 OK
 
-- Deletar um Position por seu id
+- Deletar um a posição por seu id
 
 ```
   DELETE /Position/:id
@@ -410,10 +410,35 @@ As linhas não cobertas tratam de linhas de configurações.
 <details>
 <summary><strong>:checkered_flag: QR Code </strong></summary><br/>
 
+:dart: Estas rotas  proporcionam uma forma de gerar um QR Code de identificação para ser utilizados em coleiras de pets<br>
+	
+- Obter os dados de um tutor com o seu id
+   
+```
+  GET /QRCode/Ower/:id
+```
+ Corpo da resposta: <br/>
+
+ ![Captura de tela 2023-09-11 153044](https://github.com/tamireshc/geoPet/assets/65035109/928e5ee1-3899-4b8a-8de9-ae551a61381d)
+
+ - Obter os dados de um pet com o seu id
+   
+```
+  GET /QRCode/Pet/:id
+```
+ Corpo da resposta: <br/>
+![petCaptura de tela 2023-09-11 153109](https://github.com/tamireshc/geoPet/assets/65035109/ffb75b6c-51bd-480f-a2e8-b16cf73d5934)
+
 </details>
 
 ## :smiley: Extra 
-*em construção
+:link: Como forma de exemplificar as potencializades da API foi criado um front-end em javascript que utiliza da localização  dos pets para criar um map com o os pontos das geo localizações cadastradas.<br>
+Para visualizar os pontos é necessário incluir os dados de tutor, pet e posição na API e coloca-la em funcionamento na porta 7275.<br>
+:pushpin:Link da aplicação:.<br>
+https://tamireshc.github.io/geoPetFront/ <br>
+
+Captura da aplcação com os pontos de localização de um pet:<br>
+
 ![Captura de tela 2023-09-08 195040](https://github.com/tamireshc/geoPet/assets/65035109/d3d82bd9-7d28-4b86-a36e-aa8cd01c1454)
 
 
