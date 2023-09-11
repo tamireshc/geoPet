@@ -431,6 +431,75 @@ As linhas não cobertas tratam de linhas de configurações.
 
 </details>
 
+<details>
+<summary><strong>:x: Casos de Falhas  </strong></summary><br/>
+
+- Ao atualizar, deletar e buscar por id para um ower(tutor), pet ou position inexistente deve  emitir a exceção `NotFoundException`<br><br>
+:warning: STATUS 404 - Not Found
+ ```json
+{
+	"message": "Ower not found"
+}
+  ```
+OU
+
+ ```json
+{
+	"message": "Pet not found"
+}
+  ```
+OU 
+
+ ```json
+{
+	"message": "Position not found"
+}
+  ```
+
+- Ao tentar inserir/editar um valor diferente de "SMALL", "MEDIUM" ou "LARGE" para o size de um Pet deve  emitir a exceção `InvalidValueExceptionn`<br><br>
+:bangbang: STATUS 400 - Bad Request
+ ```json
+{
+	"message": "Invalid Size"
+}
+  ```
+- Ao tentar inserir/editar um CEP com formato inválido deve emitir a exceção `InvalidCEPException`<br><br>
+:bangbang: STATUS 400 - Bad Request
+ ```json
+{
+	"message": "Invalid CEP"
+}
+  ```
+
+- Ao tentar inserir/editar um CEP inexistente deve emitir a exceção `InvalidCEPException`<br><br>
+:bangbang:: STATUS 400 - Bad Request
+ ```json
+{
+	"message": "Nonexistent CEP"
+}
+```
+- Ao tentar inserir/editar utilizando um email já existente na base de dados deve emitir a exceção `DuplicatedValueException`<br><br>
+:bangbang: STATUS 400 - Bad Request
+ ```json
+{
+	"message": "Email already exists"
+}
+```
+- Ao tentar logar utilizando um email ou password incorreto deve emitir a exceção `NotFoundException`
+ ```json
+{
+	"message": "Wrong user ou password"
+}
+```
+
+- Ao buscar pela última posição de um pet que não possui posições cadastradas deve emitir a exceção `NotFoundException`
+ ```json
+{
+	"message": "There isn´t position for this pet"
+}
+```
+</details>
+
 ## :smiley: Extra 
 :link: Como forma de exemplificar as potencializades da API foi criado um front-end em javascript que utiliza da localização  dos pets para criar um map com o os pontos das geo localizações cadastradas.<br>
 Para visualizar os pontos é necessário incluir os dados de tutor, pet e posição na API e coloca-la em funcionamento na porta 7275.<br>
