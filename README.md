@@ -55,7 +55,7 @@ As linhas não cobertas tratam de linhas de configurações.
 
 ## 🔎 Documentação da API
 <details>
-<summary><strong>:boy:: Owers </strong></summary><br/>
+<summary><strong>:boy: Owers </strong></summary><br/>
 
  - Login de tutor
 
