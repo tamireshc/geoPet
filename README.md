@@ -48,9 +48,9 @@ reportgenerator "-reports:coverage.cobertura.xml" "-targetdir:coveragereport" -r
 Então visualize os resultados do arquivo ```index.html``` no navegador
 
 ## :dart: Cobertura dos testes
-*em contrução
-O testes deste projeto contemplaram uma cobertura de ??? da linhas.<br>
-As linhas não cobertas tratam de linhas de configurações.
+O testes deste projeto contemplaram uma cobertura de 86,4% das linhas.<br>
+
+![Captura de tela 2023-09-13 112939](https://github.com/tamireshc/geoPet/assets/65035109/2b4c95d2-b339-4120-be1a-0f8194cb12c9)
 
 
 ## 🔎 Documentação da API
