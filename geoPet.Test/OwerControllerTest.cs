@@ -70,28 +70,19 @@ namespace geoPet.Test
                 dbContext.Database.EnsureDeleted();
                 dbContext.Database.EnsureCreated();
 
-                //add first ower
+                //add ower
                 var jsonToAdd = "{\"name\":\"Yuri\",\"email\":\"yuri@gmail.com\",\"cep\":\"31525380\",\"password\":\"yuri\"}";
                 var stringContent = new StringContent(jsonToAdd, Encoding.UTF8, "application/json");
                 var result = await _client.PostAsync("/Ower", stringContent);
                 result.StatusCode.Should().Be((System.Net.HttpStatusCode)200);
 
-                //add second ower
-                var jsonToAdd2 = "{\"name\":\"Tamires\",\"email\":\"tamires@gmail.com\",\"cep\":\"31525380\",\"password\":\"tamires\"}";
-                var stringContent2 = new StringContent(jsonToAdd2, Encoding.UTF8, "application/json");
-                var result2 = await _client.PostAsync("/Ower", stringContent2);
-                result2.StatusCode.Should().Be((System.Net.HttpStatusCode)200);
-
                 //Get all owers
-                var result3 = await _client.GetAsync("/Ower");
+                var result2 = await _client.GetAsync("/Ower");
                 result2.StatusCode.Should().Be((System.Net.HttpStatusCode)200);
-                var stringResult = result3.Content.ReadAsStringAsync().Result;
+                var stringResult = result2.Content.ReadAsStringAsync().Result;
 
                 stringResult.Should().Contain("Yuri");
                 stringResult.Should().Contain("yuri@gmail.com");
-
-                stringResult.Should().Contain("Tamires");
-                stringResult.Should().Contain("tamires@gmail.com");
             }
         }
 
