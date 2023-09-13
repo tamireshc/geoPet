@@ -285,115 +285,37 @@ namespace geoPet.Test
             }
         }
 
+        [Fact]
+        public async Task UpdatePetWithIncorrectSize()
+        {
+            using (var scope = _factory.Services.CreateScope())
+            {
+                var dbContext = scope.ServiceProvider.GetRequiredService<GeoPetContext>();
 
-        //[Fact]
-        //public async Task UpdateOwerWithNonExistentCEP()
-        //{
-        //    using (var scope = _factory.Services.CreateScope())
-        //    {
-        //        var dbContext = scope.ServiceProvider.GetRequiredService<GeoPetContext>();
+                dbContext.Database.EnsureDeleted();
+                dbContext.Database.EnsureCreated();
 
-        //        dbContext.Database.EnsureDeleted();
-        //        dbContext.Database.EnsureCreated();
+                //add  ower
+                var jsonToAdd = "{\"name\":\"Yuri\",\"email\":\"yuri@gmail.com\",\"cep\":\"31525380\",\"password\":\"yuri\"}";
+                var stringContent = new StringContent(jsonToAdd, Encoding.UTF8, "application/json");
+                var result = await _client.PostAsync("/Ower", stringContent);
+                result.StatusCode.Should().Be((System.Net.HttpStatusCode)200);
 
+                //add  pet
+                var jsonToAdd2 = "{\"name\":\"JUJUBA\",\"age\":2,\"size\":\"MEDIUM\",\"breed\":\"VIRA-LATA\",\"owerId\":1}";
+                var stringContent2 = new StringContent(jsonToAdd2, Encoding.UTF8, "application/json");
+                var result2 = await _client.PostAsync("/Pet", stringContent2);
+                result2.StatusCode.Should().Be((System.Net.HttpStatusCode)200);
 
-        //        //add a new ower
-        //        var jsonToAdd = "{\"name\":\"Yuri\",\"email\":\"yuri@gmail.com\",\"cep\":\"31525380\",\"password\":\"yuri\"}";
-        //        var stringContent = new StringContent(jsonToAdd, Encoding.UTF8, "application/json");
-        //        var result = await _client.PostAsync("/Ower", stringContent);
-        //        result.StatusCode.Should().Be((System.Net.HttpStatusCode)200);
+                //att pet with incorrect size
+                var jsonToAdd3 = "{\"name\":\"Damiao\",\"age\":2,\"size\":\"XXXX\",\"breed\":\"VIRA-LATA\",\"owerId\":1}";
+                var stringContent3 = new StringContent(jsonToAdd3, Encoding.UTF8, "application/json");
+                var result3 = await _client.PutAsync("/Pet/1", stringContent3);
+                result3.StatusCode.Should().Be((System.Net.HttpStatusCode)400);
 
-        //        //att this new ower
-        //        var jsonToAdd2 = "{\"name\":\"Yuri\",\"email\":\"yuri@gmail.com\",\"cep\":\"00000000\",\"password\":\"yuri\"}";
-        //        var stringContent2 = new StringContent(jsonToAdd2, Encoding.UTF8, "application/json");
-        //        var result2 = await _client.PutAsync("/Ower/1", stringContent2);
-        //        result2.StatusCode.Should().Be((System.Net.HttpStatusCode)400);
-
-        //        var stringResult = result2.Content.ReadAsStringAsync().Result;
-        //        stringResult.Should().Contain("Nonexistent CEP");
-        //    }
-        //}
-
-        //[Fact]
-        //public async Task UpdateOwerWithIncorrectCEP()
-        //{
-        //    using (var scope = _factory.Services.CreateScope())
-        //    {
-        //        var dbContext = scope.ServiceProvider.GetRequiredService<GeoPetContext>();
-
-        //        dbContext.Database.EnsureDeleted();
-        //        dbContext.Database.EnsureCreated();
-
-
-        //        //add a new ower
-        //        var jsonToAdd = "{\"name\":\"Yuri\",\"email\":\"yuri@gmail.com\",\"cep\":\"31525380\",\"password\":\"yuri\"}";
-        //        var stringContent = new StringContent(jsonToAdd, Encoding.UTF8, "application/json");
-        //        var result = await _client.PostAsync("/Ower", stringContent);
-        //        result.StatusCode.Should().Be((System.Net.HttpStatusCode)200);
-
-        //        //att this new ower
-        //        var jsonToAdd2 = "{\"name\":\"Yuri\",\"email\":\"yuri@gmail.com\",\"cep\":\"000\",\"password\":\"yuri\"}";
-        //        var stringContent2 = new StringContent(jsonToAdd2, Encoding.UTF8, "application/json");
-        //        var result2 = await _client.PutAsync("/Ower/1", stringContent2);
-        //        result2.StatusCode.Should().Be((System.Net.HttpStatusCode)400);
-
-        //        var stringResult = result2.Content.ReadAsStringAsync().Result;
-        //        stringResult.Should().Contain("Invalid CEP");
-        //    }
-
-        //}
-
-        //[Fact]
-        //public async Task LoginOwer()
-        //{
-        //    using (var scope = _factory.Services.CreateScope())
-        //    {
-        //        var dbContext = scope.ServiceProvider.GetRequiredService<GeoPetContext>();
-
-        //        dbContext.Database.EnsureDeleted();
-        //        dbContext.Database.EnsureCreated();
-
-        //        //add a new ower
-        //        var jsonToAdd = "{\"name\":\"Yuri\",\"email\":\"yuri@gmail.com\",\"cep\":\"31525380\",\"password\":\"yuri\"}";
-        //        var stringContent = new StringContent(jsonToAdd, Encoding.UTF8, "application/json");
-        //        var result = await _client.PostAsync("/Ower", stringContent);
-        //        result.StatusCode.Should().Be((System.Net.HttpStatusCode)200);
-
-        //        //Login
-        //        var jsonToAdd2 = "{\"email\":\"yuri@gmail.com\",\"password\":\"yuri\"}";
-        //        var stringContent2 = new StringContent(jsonToAdd2, Encoding.UTF8, "application/json");
-        //        var result2 = await _client.PostAsync("/Login", stringContent2);
-        //        result2.StatusCode.Should().Be((System.Net.HttpStatusCode)200);
-        //    }
-
-        //}
-
-        //[Fact]
-        //public async Task LoginOwerWithIncorrectData()
-        //{
-        //    using (var scope = _factory.Services.CreateScope())
-        //    {
-        //        var dbContext = scope.ServiceProvider.GetRequiredService<GeoPetContext>();
-
-        //        dbContext.Database.EnsureDeleted();
-        //        dbContext.Database.EnsureCreated();
-
-        //        //add a new ower
-        //        var jsonToAdd = "{\"name\":\"Yuri\",\"email\":\"yuri@gmail.com\",\"cep\":\"31525380\",\"password\":\"yuri\"}";
-        //        var stringContent = new StringContent(jsonToAdd, Encoding.UTF8, "application/json");
-        //        var result = await _client.PostAsync("/Ower", stringContent);
-        //        result.StatusCode.Should().Be((System.Net.HttpStatusCode)200);
-
-        //        //Login
-        //        var jsonToAdd2 = "{\"email\":\"yuri@gmail.com\",\"password\":\"yu\"}";
-        //        var stringContent2 = new StringContent(jsonToAdd2, Encoding.UTF8, "application/json");
-        //        var result2 = await _client.PostAsync("/Login", stringContent2);
-        //        result2.StatusCode.Should().Be((System.Net.HttpStatusCode)404);
-        //        var stringResult = result2.Content.ReadAsStringAsync().Result;
-
-        //        stringResult.Should().Contain("Wrong user ou password");
-        //    }
-
-        //}
+                var stringResult = result3.Content.ReadAsStringAsync().Result;
+                stringResult.Should().Contain("Invalid Size");
+            }
+        }
     }
 }

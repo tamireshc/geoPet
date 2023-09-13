@@ -87,6 +87,10 @@ namespace geoPet.Services
         {
             this.findById(id);
 
+            Ower ower = _owerRepository.findById(request.OwerId);
+
+            if (ower == null) throw new NotFoundException("Ower not found");
+
             Size size;
 
             switch (request.Size)
