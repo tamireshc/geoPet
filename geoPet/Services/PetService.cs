@@ -79,7 +79,7 @@ namespace geoPet.Services
 
         public void delete(int id)
         {
-            Pet pet = _petRepository.findById(id);
+            Pet pet = this.findById(id);
             _petRepository.delete(pet);
         }
 
